@@ -5,7 +5,7 @@ import type { Message, User } from "../types";
 
 interface ChatUiProps {
   currentUser: User;
-  onLogout: () => void; // logout callback
+  onLogout: () => void; 
 }
 
 const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
@@ -72,15 +72,15 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-300 flex flex-col">
+      <div className="sm:w-64 w-[120px] bg-white border-r border-gray-300 flex flex-col">
         {/* Header with logout */}
-        <div className="flex justify-between items-center p-4 border-b border-gray-300">
-          <h2 className="text-xl font-bold">Online Users</h2>
+        <div className="flex flex-wrap justify-between items-center p-4 border-b border-gray-300">
+          <h2 className="sm:text-xl font-bold text-sm mb-2 sm:mb-0">Online Users</h2>
           <button
             onClick={onLogout}
-            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+            className="bg-red-500 text-white px-2 sm:px-3 sm:py-1 py-0.5 rounded hover:bg-red-600 transition"
           >
             Logout
           </button>
@@ -88,7 +88,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
 
         {/* Show logged-in user at top */}
         <ul className="flex-col">
-          <li className="p-4 bg-gray-100 flex justify-between items-center font-semibold border-b border-gray-300">
+          <li className="sm:p-4 px-1 py-1 bg-gray-100 flex justify-between items-center font-semibold border-b border-gray-300">
             <span>{currentUser.name} (You)</span>
             {currentUser.online && <span className="w-3 h-3 bg-green-500 rounded-full"></span>}
           </li>
@@ -112,7 +112,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col sticky top-0">
         {selectedUser ? (
           <>
             {/* Chat Header */}
@@ -121,20 +121,22 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-2">
-              {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`p-2 rounded-md max-w-xs ${
-                    msg.sender === currentUser._id
-                      ? "bg-blue-500 text-white ml-auto"
-                      : "bg-gray-200"
-                  }`}
-                >
-                  {msg.message}
-                </div>
-              ))}
-              <div ref={messagesEndRef} />
+            <div className=" overflow-y-auto">
+              <div className="flex-1 p-4 space-y-2 h-[calc(100vh-132px)]">
+                {messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={`p-2 rounded-md max-w-[100px] ${
+                      msg.sender === currentUser._id
+                        ? "bg-blue-500 text-white ml-auto"
+                        : "bg-red-300"
+                    }`}
+                  >
+                    {msg.message}
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
             </div>
 
             {/* Input */}
