@@ -74,7 +74,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="sm:w-64 w-[120px] bg-white border-r border-gray-300 flex flex-col">
+      <div className="sm:w-64 w-3/12 bg-white border-r border-gray-300 flex flex-col">
         {/* Header with logout */}
         <div className="flex flex-wrap justify-between items-center p-4 border-b border-gray-300">
           <h2 className="sm:text-xl font-bold text-sm mb-2 sm:mb-0">Online Users</h2>
@@ -112,7 +112,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col sticky top-0">
+      <div className="flex-1 w-9/12 flex flex-col sticky top-0">
         {selectedUser ? (
           <>
             {/* Chat Header */}
@@ -140,7 +140,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
             </div>
 
             {/* Input */}
-            <div className="p-4 bg-white flex gap-2 border-t border-gray-300">
+            <div className="sm:p-4 p-2 bg-white flex gap-2 border-t border-gray-300">
               <input
                 type="text"
                 placeholder="Type a message..."
@@ -151,7 +151,7 @@ const ChatUi: React.FC<ChatUiProps> = ({ currentUser, onLogout }) => {
               />
               <button
                 onClick={handleSend}
-                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition"
+                className="bg-blue-500 text-white px-2 sm:px-4 py-2 rounded-full hover:bg-blue-600 transition"
               >
                 Send
               </button>
